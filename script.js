@@ -57,8 +57,10 @@ function updatePrevDisplay() {
 
 function clear(event) {
     if (event.target.textContent == "AC") {
+        displayInput.textContent = 0;
+        displayPrev.textContent = 0;
+        total = 0;
         currValue = 0;
-        updateDisplay();
     } else if (event.target.textContent == "CE") {
         if (currValue.length == 1) {
             currValue = 0;
@@ -66,11 +68,9 @@ function clear(event) {
         } else {
             currValue = currValue.slice(0, -1);
             updateDisplay();
-            console.log(currValue);
         }
     }
 }
-
 
 function handleButtonClick(event) {
     if (!opertators.includes(event.target.textContent)) {
@@ -78,18 +78,14 @@ function handleButtonClick(event) {
             if (currValue == 0) {
                 currValue = event.target.textContent;
                 updateDisplay();
-                console.log(event.target.textContent)
             } else {
                 currValue += event.target.textContent;
                 updateDisplay();
-                console.log(event.target.textContent)
             }
         } else if (!(event.target.textContent == ".")) {
             currValue += event.target.textContent;
             updateDisplay();
         } 
-
-        console.log(currValue);
     } else if (opertators.includes(event.target.textContent) && 
                 event.target.textContent != "=") {
                     
@@ -103,19 +99,17 @@ function handleButtonClick(event) {
             operate(tempOperator, tempTotal, tempCurrValue);
             updateDisplay();
             updatePrevDisplay();
-            console.log(total);
         } else {
             let tempOperator = event.target.textContent;
             total = tempCurrValue;
             currValue = 0;
             updateDisplay();
             displayPrev.textContent = total + tempOperator;
-            console.log(total);
         }
 
         operator = event.target.textContent;
     } else if (opertators.includes(event.target.textContent) && 
-                event.target.textContent == "="){
+                event.target.textContent == "=") {
 
             let tempCurrValue = Number(currValue);
             let tempTotal = Number(total);
@@ -126,7 +120,7 @@ function handleButtonClick(event) {
             operate(tempOperator, tempTotal, tempCurrValue);
             displayInput.textContent = total;
             displayPrev.textContent = 0;
-            console.log(total);
+            total = 0;
     }
     
 }
