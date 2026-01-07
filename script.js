@@ -73,6 +73,7 @@ function clear(event) {
 }
 
 function handleButtonClick(event) {
+    
     if (!opertators.includes(event.target.textContent)) {
         if (!String(currValue).includes(".")) {
             if (currValue == 0) {
